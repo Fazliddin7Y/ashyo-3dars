@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import {
   FaSearch,
   FaBalanceScale,
@@ -37,12 +37,13 @@ const InnerHeader: React.FC = () => {
           <select
             className="bg-transparent outline-none cursor-pointer"
             onChange={(e) => {
+              const newLocale = e.target.value;
               if (typeof window !== 'undefined') {
-                window.localStorage.setItem('locale', e.target.value);
+                window.localStorage.setItem('locale', newLocale);
                 window.location.reload(); // sahifani reload qiladi
               }
             }}
-            defaultValue={typeof window !== 'undefined' ? localStorage.getItem('locale') || 'uz' : 'uz'}
+            value={localStorage.getItem('locale') || 'uz'}
           >
             <option value="uz">Uz</option>
             <option value="en">En</option>
